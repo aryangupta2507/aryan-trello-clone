@@ -105,7 +105,7 @@ export async function updateCard(
     });
 
     // Activity logging depending on what changed
-    const activities = [];
+    const activities: any[] = [];
 
     if (parsed.listId && parsed.listId !== originalCard.listId) {
       const newList = await prisma.list.findUnique({
