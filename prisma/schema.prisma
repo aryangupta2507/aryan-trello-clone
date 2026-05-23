@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Board {
+  id         String     @id @default(uuid())
+  title      String
+  background String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  activities Activity[]
+  labels     Label[]
+  lists      List[]
+  members    Member[]   @relation("BoardMembers")
+
+  @@index([createdAt])
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  position  Float
+  boardId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cards     Card[]
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@index([boardId])
+  @@index([position])
+}
+
+model Card {
+  id          String          @id @default(uuid())
+  title       String
+  description String          @default("")
+  position    Float
+  dueDate     DateTime?
+  dueComplete Boolean         @default(false)
+  coverColor  String?
+  coverImage  String?
+  isArchived  Boolean         @default(false)
+  listId      String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  activities  Activity[]
+  attachments Attachment[]
+  list        List            @relation(fields: [listId], references: [id], onDelete: Cascade)
+  checklist   ChecklistItem[]
+  comments    Comment[]
+  labels      Label[]         @relation("CardLabels")
+  members     Member[]        @relation("CardMembers")
+
+  @@index([listId])
+  @@index([position])
+}
+
+model Member {
+  id         String     @id @default(uuid())
+  name       String
+  avatarUrl  String
+  email      String     @unique
+  activities Activity[]
+  comments   Comment[]
+  boards     Board[]    @relation("BoardMembers")
+  cards      Card[]     @relation("CardMembers")
+}
+
+model Label {
+  id      String  @id @default(uuid())
+  title   String?
+  color   String
+  boardId String
+  board   Board   @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  cards   Card[]  @relation("CardLabels")
+
+  @@index([boardId])
+}
+
+model ChecklistItem {
+  id          String   @id @default(uuid())
+  title       String
+  isCompleted Boolean  @default(false)
+  cardId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  card        Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([cardId])
+}
+
+model Attachment {
+  id        String   @id @default(uuid())
+  fileName  String
+  fileUrl   String
+  fileType  String
+  cardId    String
+  createdAt DateTime @default(now())
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([cardId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  text      String
+  cardId    String
+  memberId  String
+  createdAt DateTime @default(now())
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@index([cardId])
+  @@index([memberId])
+}
+
+model Activity {
+  id        String   @id @default(uuid())
+  text      String
+  boardId   String
+  cardId    String?
+  memberId  String
+  createdAt DateTime @default(now())
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  card      Card?    @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@index([boardId])
+  @@index([cardId])
+  @@index([memberId])
+}
