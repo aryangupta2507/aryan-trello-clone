@@ -120,6 +120,22 @@ npm run dev
 ```
 
 ---
+## Screenshots
+
+### Dashboard
+<img width="1915" height="970" alt="dashboard png" src="https://github.com/user-attachments/assets/c1f3b758-4dd4-4c81-aa27-a5befbc3ce90" />
+
+### Board Management
+<img width="1911" height="946" alt="board-view png" src="https://github.com/user-attachments/assets/e8daff76-04a6-4444-b9ba-0d9685f3a8c6" />
+
+### Drag and Drop Functionality
+<img width="1914" height="942" alt="drag-drop png" src="https://github.com/user-attachments/assets/063ac9d0-36d0-427d-ab84-1b254c6fcc2f" />
+
+### Card Details Modal
+<img width="1918" height="971" alt="card-modal png" src="https://github.com/user-attachments/assets/6bdd57f8-57bb-44e6-b1a3-1d23706ff5f3" />
+
+### Filters Section
+<img width="1907" height="942" alt="filters png" src="https://github.com/user-attachments/assets/2d5263f2-8c7e-4d00-9538-4bb1aaf1f148" />
 
 # Deployment
 
