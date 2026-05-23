@@ -252,7 +252,9 @@ export async function toggleCardLabel(cardId: string, labelId: string) {
     });
     if (!card) throw new Error("Card not found");
 
-    const labelExists = card.labels.some((l) => l.id === labelId);
+    const labelExists = card.labels.some(
+      (l: { id: string }) => l.id === labelId,
+    );
 
     const updated = await prisma.card.update({
       where: { id: cardId },
