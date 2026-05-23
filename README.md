@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aryan Trello Clone
 
-## Getting Started
+A fullstack Trello-style project management application inspired by Trello’s UI and workflow management system. Built using Next.js, Prisma ORM, PostgreSQL, and TypeScript.
 
-First, run the development server:
+---
+
+## Features
+
+### Board Management
+- Create boards
+- View boards with lists and cards
+
+### Lists Management
+- Create, edit, and delete lists
+- Drag and drop list reordering
+
+### Cards Management
+- Create cards
+- Edit card title and description
+- Drag and drop cards between lists
+- Reorder cards within a list
+- Archive cards
+
+### Card Details
+- Labels support
+- Due dates
+- Checklist with progress tracking
+- Member assignment
+- Comments system
+- Card covers
+
+### Search & Filters
+- Search cards by title
+- Filter by:
+  - Labels
+  - Members
+  - Due dates
+
+### Additional Features
+- Responsive Trello-inspired UI
+- PostgreSQL integration
+- Seeded demo data
+- Smooth drag-and-drop interactions
+
+---
+
+# Tech Stack
+
+## Frontend
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+## Backend
+- Next.js Server Actions
+- Prisma ORM
+
+## Database
+- PostgreSQL (Neon)
+
+## Drag and Drop
+- dnd-kit
+
+---
+
+# Database Schema
+
+The database schema was designed manually using Prisma ORM with proper relational mapping between:
+
+- Boards
+- Lists
+- Cards
+- Members
+- Labels
+- Checklist Items
+- Comments
+
+---
+
+# Setup Instructions
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/aryangupta2507/aryan-trello-clone.git
+```
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+## 3. Configure Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="your_postgresql_connection_string"
+```
+
+## 4. Run Prisma Migration
+
+```bash
+npx prisma migrate dev
+```
+
+## 5. Seed Database
+
+```bash
+npx prisma db seed
+```
+
+## 6. Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Frontend & Backend: Vercel
+- Database: Neon PostgreSQL
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+# Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Aryan Gupta
