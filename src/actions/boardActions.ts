@@ -68,7 +68,7 @@ export async function createBoard(rawInput: {
         title: parsed.title,
         background: parsed.background,
         members: {
-          connect: defaultMembers.map((m) => ({ id: m.id })),
+          connect: defaultMembers.map((m: { id: string }) => ({ id: m.id })),
         },
       },
     });
